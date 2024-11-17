@@ -3,9 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weatherly/features/dashboard/presentation/dashboard_screen.dart';
 import 'package:weatherly/util/location_service.dart';
 
-// import 'package:weatherly/features/dashboard/presentation/dashboard_screen.dart';
-// import 'package:weatherly/models/weather_model.dart';
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -56,23 +53,4 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
     );
   }
-
-  // Future<void> _getCurrentPosition() async {
-  //   final hasPermission = await _handleLocationPermission();
-  //   if (!hasPermission) return;
-  //   await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
-  //       .then((Position position) {
-  //     setState(() {
-  //       _currentPosition = position;
-  //       Timer(
-  //           const Duration(seconds: 2),
-  //           (() => Navigator.pushReplacement(
-  //               context,
-  //               MaterialPageRoute(
-  //                   builder: ((context) => const DashBoardScreen())))));
-  //     });
-  //   }).catchError((e) {
-  //     debugPrint(e);
-  //   });
-  // }
 }

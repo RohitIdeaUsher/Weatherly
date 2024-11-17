@@ -415,4 +415,47 @@ class WeatherModel {
         return 'assets/img/04d.png';
     }
   }
+
+  static String getWeatherIconSvg(String icon) {
+    switch (icon) {
+      case '01d':
+        return 'assets/svg/01d.svg';
+      case '01n':
+        return 'assets/svg/01n.svg';
+      case '02d':
+        return 'assets/svg/02d.svg';
+      case '02n':
+        return 'assets/svg/02n.svg';
+      case '03d':
+        return 'assets/svg/03d.svg';
+      case '03n':
+        return 'assets/svg/03n.svg';
+      case '04d':
+        return 'assets/svg/04d.svg';
+      case '04n':
+        return 'assets/svg/04n.svg';
+      case '09d':
+        return 'assets/svg/09d.svg';
+      case '09n':
+        return 'assets/svg/09n.svg';
+      case '10d':
+        return 'assets/svg/10d.svg';
+      case '10n':
+        return 'assets/svg/10n.svg';
+      case '11d':
+        return 'assets/svg/11d.svg';
+      case '11n':
+        return 'assets/svg/11n.svg';
+      case '13d':
+        return 'assets/svg/13d.svg';
+      case '13n':
+        return 'assets/svg/13n.svg';
+      case '50d':
+        return 'assets/svg/50n.svg';
+      case '50n':
+        return 'assets/svg/50n.svg';
+      default:
+        return 'assets/svg/04d.svg';
+    }
+  }
 }

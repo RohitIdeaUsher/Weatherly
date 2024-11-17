@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:weatherly/features/dashboard/domain/forecast_model.dart';
 import 'package:weatherly/features/dashboard/domain/weather_model.dart';
@@ -14,12 +16,12 @@ class WeeklyForecastTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 20,
+      padding: EdgeInsets.symmetric(
+        horizontal: 16.w,
+        vertical: 20.h,
       ),
-      margin: const EdgeInsets.symmetric(
-        vertical: 12,
+      margin: EdgeInsets.symmetric(
+        vertical: 12.h,
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
@@ -36,7 +38,7 @@ class WeeklyForecastTile extends StatelessWidget {
                 // ?? 'Sunday',
                 style: const TextStyle(color: Colors.white, fontSize: 20),
               ),
-              const SizedBox(height: 5),
+              SizedBox(height: 5.h),
               Text(
                 DateFormat('dd MMMM yyyy').format(DateTime.parse(model.date!)),
                 style: const TextStyle(color: Colors.white),
@@ -44,54 +46,26 @@ class WeeklyForecastTile extends StatelessWidget {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Icon(
+                  Icon(
                     Icons.arrow_downward_rounded,
                     color: Colors.green,
-                    size: 18,
+                    size: 18.h,
                   ),
                   Text('${model.minTemp}°C  ',
-                      style: const TextStyle(color: Colors.white, fontSize: 14)),
-                  const Icon(
+                      style:
+                          const TextStyle(color: Colors.white, fontSize: 14)),
+                  Icon(
                     Icons.arrow_upward_rounded,
                     color: Colors.red,
-                    size: 18,
+                    size: 18.h,
                   ),
                   Text('${model.maxTemp}°C',
-                      style: const TextStyle(color: Colors.white, fontSize: 14)),
+                      style:
+                          const TextStyle(color: Colors.white, fontSize: 14)),
                 ],
               ),
             ],
           ),
-
-          // const Column(
-          //   children: [
-          //     Row(
-          //       mainAxisSize: MainAxisSize.min,
-          //       children: [
-          //         Icon(
-          //           Icons.arrow_upward_rounded,
-          //           color: Colors.white,
-          //           size: 18,
-          //         ),
-          //         Text('12',
-          //             style: TextStyle(color: Colors.white, fontSize: 14)),
-          //       ],
-          //     ),
-          //     Row(
-          //       mainAxisSize: MainAxisSize.min,
-          //       children: [
-          //         Icon(
-          //           Icons.arrow_downward_rounded,
-          //           color: Colors.white,
-          //           size: 18,
-          //         ),
-          //         Text('12',
-          //             style: TextStyle(color: Colors.white, fontSize: 14)),
-          //       ],
-          //     ),
-          //   ],
-          // ),
-
           // Temperature
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -116,9 +90,10 @@ class WeeklyForecastTile extends StatelessWidget {
           ),
 
           // weather icon
-          Image.asset(
-            WeatherModel.getWeatherIcon(model.icon ?? '0'),
-            width: 60,
+          // Image.asset(
+          SvgPicture.asset(
+            WeatherModel.getWeatherIconSvg(model.icon ?? '0'),
+            width: 60.w,
           ),
         ],
       ),

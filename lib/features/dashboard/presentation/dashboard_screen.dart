@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:weatherly/components/weekly_forecast_tile.dart';
 import 'package:weatherly/features/dashboard/domain/weather_model.dart';
@@ -18,47 +19,7 @@ class DashBoardScreen extends ConsumerWidget {
     // final forecastListing = ref.watch(getFiveDaysWeatherForecastProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        automaticallyImplyLeading: false,
-        title: const Text(
-          'Weatherly',
-          style: TextStyle(color: Colors.white, fontSize: 40),
-        ),
-        actions: [
-          IconButton(
-              onPressed: () async {
-                await ref
-                    .read(dashboardControllerProvider.notifier)
-                    .getLocationWiseWeather();
-              },
-              icon: const Icon(Icons.gps_fixed_rounded,
-                  color: Colors.white, size: 30)),
-          const SizedBox(
-            width: 20,
-          ),
-          IconButton(
-              onPressed: () async {
-                final result = await showSearch(
-                  context: context,
-                  delegate: CustomSearchDelegate(),
-                );
-                if (result != null) {
-                  await LocationService.getCoordinatesFromAddress(
-                    result,
-                    onSuccess: (lat, long) async {
-                      await ref
-                          .read(dashboardControllerProvider.notifier)
-                          .getLocationWiseWeather(lat: lat, long: long);
-                    },
-                  );
-                }
-                // log(result ?? 'No data');
-              },
-              icon: const Icon(Icons.search, color: Colors.white, size: 30)),
-        ],
-      ),
+      appBar: _appBar(ref, context),
       backgroundColor: const Color(0xff060720),
       body: dashboradController.when(
         data: body,
@@ -67,6 +28,61 @@ class DashBoardScreen extends ConsumerWidget {
           child: CircularProgressIndicator(),
         ),
       ),
+    );
+  }
+
+  AppBar _appBar(WidgetRef ref, BuildContext context) {
+    return AppBar(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      automaticallyImplyLeading: false,
+      title: const Text(
+        'Weatherly',
+        style: TextStyle(color: Colors.white, fontSize: 40),
+      ),
+      actions: [
+        IconButton(
+            onPressed: () async {
+              // await ref
+              //     .read(dashboardControllerProvider.notifier)
+              //     .getLocationWiseWeather();
+            },
+            icon: Icon(Icons.brightness_4_outlined,
+                color: Colors.white, size: 30.h)),
+        SizedBox(
+          width: 20.h,
+        ),
+        IconButton(
+            onPressed: () async {
+              await ref
+                  .read(dashboardControllerProvider.notifier)
+                  .getLocationWiseWeather();
+            },
+            icon:
+                Icon(Icons.gps_fixed_rounded, color: Colors.white, size: 30.h)),
+        SizedBox(
+          width: 20.h,
+        ),
+        IconButton(
+            onPressed: () async {
+              final result = await showSearch(
+                context: context,
+                delegate: CustomSearchDelegate(),
+              );
+              if (result != null) {
+                await LocationService.getCoordinatesFromAddress(
+                  result,
+                  onSuccess: (lat, long) async {
+                    await ref
+                        .read(dashboardControllerProvider.notifier)
+                        .getLocationWiseWeather(lat: lat, long: long);
+                  },
+                );
+              }
+              // log(result ?? 'No data');
+            },
+            icon: Icon(Icons.search, color: Colors.white, size: 30.h)),
+      ],
     );
   }
 
@@ -110,14 +126,15 @@ class DashBoardScreen extends ConsumerWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       gradient: const LinearGradient(colors: [
                         // Color.fromARGB(255, 21, 85, 169),
                         // Color.fromARGB(255, 44, 162, 246),
-                        Colors.lightBlue,
-                        Colors.blue
+                        Colors.lightBlueAccent,
+                        Colors.lightBlue
                       ])),
                   child: Center(
                     child: Text(
@@ -127,7 +144,8 @@ class DashBoardScreen extends ConsumerWidget {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
                   child: Center(
                     child: Text(
                       '${model?.main?.temp?.toString() ?? 0.0}°C',
@@ -143,14 +161,16 @@ class DashBoardScreen extends ConsumerWidget {
         SizedBox(
           height: 40.h,
         ),
-        Image.asset(
-          WeatherModel.getWeatherIcon(model?.weather?.firstOrNull?.icon ?? '0'),
+        // Image.asset(
+        SvgPicture.asset(
+          WeatherModel.getWeatherIconSvg(
+              model?.weather?.firstOrNull?.icon ?? '0'),
           height: 200.h,
           width: 200.h,
         ),
         Container(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-          margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 4),
+          padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),
+          margin: EdgeInsets.symmetric(vertical: 20.h, horizontal: 4.w),
           decoration: BoxDecoration(
             color: Colors.blue.shade200,
             borderRadius: BorderRadius.circular(20),
@@ -161,125 +181,78 @@ class DashBoardScreen extends ConsumerWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.wind_power,
-                        color: Colors.white,
-                      ),
-                      const SizedBox(height: 5),
-                      weatherInfoCard(
-                        title: 'Wind',
-                        value: '${model?.wind?.speed ?? 0}km/h',
-                      ),
-                    ],
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.sunny,
-                        color: Colors.white,
-                      ),
-                      const SizedBox(height: 5),
-                      weatherInfoCard(
-                          title: 'Max',
-                          value: '${model?.main?.tempMax ?? 0}°C'),
-                    ],
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.wb_sunny_outlined,
-                        color: Colors.white,
-                      ),
-                      const SizedBox(height: 5),
-                      weatherInfoCard(
-                          title: 'Min',
-                          value: '${model?.main?.tempMin ?? 0}°C'),
-                    ],
-                  ),
+                  commonDataColumn(
+                      icon: Icons.wind_power_rounded,
+                      title: 'Wind',
+                      value: '${model?.wind?.speed ?? 0}m/s'),
+                  commonDataColumn(
+                      icon: Icons.sunny,
+                      title: 'Max',
+                      value: '${model?.main?.tempMax ?? 0}°C'),
+                  commonDataColumn(
+                      icon: Icons.wb_sunny_outlined,
+                      title: 'Min',
+                      value: '${model?.main?.tempMin ?? 0}°C'),
                 ],
               ),
-              const SizedBox(
-                height: 20,
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 10),
-                child: Divider(),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.h),
+                child: const Divider(
+                  color: Colors.white,
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.water_drop,
-                        color: Colors.amber,
-                      ),
-                      const SizedBox(height: 5),
-                      weatherInfoCard(
-                          title: 'Humidity',
-                          value: '${model?.main?.humidity ?? 0}%'),
-                    ],
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.air,
-                        color: Colors.amber,
-                      ),
-                      const SizedBox(height: 5),
-                      weatherInfoCard(
-                          title: 'Pressure',
-                          value: '${model?.main?.pressure ?? 0}hPa'),
-                    ],
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.leaderboard,
-                        color: Colors.amber,
-                      ),
-                      const SizedBox(height: 5),
-                      weatherInfoCard(
-                          title: 'Sea-Level',
-                          value: '${model?.main?.seaLevel ?? 0}km'),
-                    ],
-                  ),
+                  commonDataColumn(
+                      icon: Icons.water_drop,
+                      iconColor: Colors.amber,
+                      title: 'Humidity',
+                      value: '${model?.main?.humidity ?? 0}%'),
+                  commonDataColumn(
+                      icon: Icons.air,
+                      iconColor: Colors.amber,
+                      title: 'Pressure',
+                      value: '${model?.main?.pressure ?? 0}hPa'),
+                  commonDataColumn(
+                      icon: Icons.leaderboard,
+                      iconColor: Colors.amber,
+                      title: 'Sea-Level',
+                      value: '${model?.main?.seaLevel ?? 0}km'),
                 ],
-              )
+              ),
             ],
           ),
         ),
-
         const Text('Forecast for next 5 days',
             style: TextStyle(color: Colors.white, fontSize: 20)),
-
         ...List.generate(
             forecast.length,
             (index) => WeeklyForecastTile(
                   model: forecast[index],
                 )),
-        // Container(
-        //   padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-        //   decoration: BoxDecoration(
-        //       borderRadius: BorderRadius.circular(10),
-        //       gradient: LinearGradient(colors: [
-        //         // Color.fromARGB(255, 21, 85, 169),
-        //         // Color.fromARGB(255, 44, 162, 246),
-        //         Colors.deepPurple,
-        //         Colors.deepPurple.shade200
-        //       ])),
-        //   alignment: Alignment.center,
-        //   child: const Text('View Forecast For Next 5 Days',
-        //       style: TextStyle(color: Colors.white, fontSize: 20)),
-        // )
+      ],
+    );
+  }
+
+  Column commonDataColumn(
+      {required IconData icon,
+      Color? iconColor,
+      String title = '',
+      String value = ''}) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          // Icons.straight_rounded
+          icon,
+          color: iconColor ?? Colors.white,
+        ),
+        SizedBox(height: 5.h),
+        weatherInfoCard(
+          title: title,
+          value: value,
+        ),
       ],
     );
   }

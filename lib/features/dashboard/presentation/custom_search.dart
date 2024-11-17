@@ -5,18 +5,6 @@ import 'package:weatherly/features/dashboard/presentation/search_controller.dart
 class CustomSearchDelegate extends SearchDelegate<String> {
   CustomSearchDelegate();
 
-  // final dashboradController =
-
-  final List<String> data = [
-    'Apple',
-    'Banana',
-    'Cherry',
-    'Date',
-    'Elderberry',
-    'Fig',
-    'Grape',
-  ];
-
   // Define the search field style
   @override
   ThemeData appBarTheme(BuildContext context) {
@@ -89,23 +77,7 @@ class CustomSearchDelegate extends SearchDelegate<String> {
   // Show search results
   @override
   Widget buildResults(BuildContext context) {
-    debugPrint('buildResults: $query');
-    final results = data
-        .where((item) => item.toLowerCase() == query.toLowerCase())
-        .toList();
-
-    return results.isNotEmpty
-        ? ListView.builder(
-            itemCount: results.length,
-            itemBuilder: (context, index) {
-              return ListTile(
-                title: Text('results: ${results[index]}'),
-              );
-            },
-          )
-        : const Center(
-            child: Text('No results found'),
-          );
+    return const SizedBox();
   }
 
   // Show actions in the search bar (e.g., clear query)
