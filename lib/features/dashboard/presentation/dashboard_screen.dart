@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:intl/intl.dart';
 import 'package:weatherly/components/weekly_forecast_tile.dart';
 import 'package:weatherly/features/dashboard/domain/weather_model.dart';
 import 'package:weatherly/features/dashboard/presentation/custom_search.dart';
 import 'package:weatherly/features/dashboard/presentation/dashboard_controller.dart';
+import 'package:weatherly/main.dart';
 import 'package:weatherly/util/location_service.dart';
 import 'package:weatherly/util/theme_notifier.dart';
 
@@ -15,21 +17,58 @@ class DashBoardScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final internetStatus = ref.watch(internetConnectionProvider);
     final dashboradController = ref.watch(dashboardControllerProvider);
 
-    // final forecastListing = ref.watch(getFiveDaysWeatherForecastProvider);
     final themeNotifier = ref.read(themeProvider.notifier);
 
     return Scaffold(
       appBar: _appBar(ref, context, themeNotifier),
       backgroundColor: Theme.of(context).canvasColor,
-      body: dashboradController.when(
-        data: (data) {
-          return body(context, data);
+      body: internetStatus.when(
+        data: (status) {
+          switch (status) {
+            case InternetStatus.connected:
+              return dashboradController.when(
+                data: (data) {
+                  return body(context, data);
+                },
+                error: (e, st) => Center(child: Text(e.toString())),
+                loading: () => const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            case InternetStatus.disconnected:
+              return const Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.network_check,
+                      color: Colors.amber,
+                    ),
+                    Text(
+                      'No internet connection.',
+                      style: TextStyle(fontSize: 16),
+                    )
+                  ],
+                ),
+              );
+          }
         },
-        error: (e, st) => Center(child: Text(e.toString())),
-        loading: () => const Center(
-          child: CircularProgressIndicator(),
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (error, stackTrace) => Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.error,
+              color: Colors.amber,
+            ),
+            Text(
+              'No details found.',
+              style: TextStyle(fontSize: 16),
+            )
+          ],
         ),
       ),
     );

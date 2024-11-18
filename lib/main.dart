@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:weatherly/dependencies.dart';
 import 'package:weatherly/features/splash/presentation/splash_screen.dart';
 import 'package:weatherly/util/theme_notifier.dart';
+
+// StreamProvider to listen to internet connection changes
+final internetConnectionProvider = StreamProvider<InternetStatus>((ref) {
+  return InternetConnection().onStatusChange;
+});
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
