@@ -80,4 +80,4 @@ To set up your environment, create a env.json file inside the assets/ directory.
 }
 
 
-[Watch Video Demo](https://drive.google.com/file/d/1LMLzc8fGYKtDwOWZkLwpK02wPVFb3Xvi/view?usp=drive_link)
+[!Watch Video Demo](https://drive.google.com/file/d/1LMLzc8fGYKtDwOWZkLwpK02wPVFb3Xvi/view?usp=drive_link)
