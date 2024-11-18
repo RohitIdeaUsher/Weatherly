@@ -1,5 +1,18 @@
 # Weatherly - Flutter Weather Application
 
+
+## App Demo
+
+<video controls>
+  <source src="media/preview.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+![App Screenshot](media/image1.png)
+![App Screenshot](media/image2.png)
+![App Screenshot](media/image3.png)
+
+
 Welcome to **Weatherly**, a weather forecasting mobile application built using **Flutter**. This app is designed with a clean architecture and a feature-first approach to provide an easy-to-maintain and scalable structure.
 
 ## Table of Contents
@@ -79,13 +92,4 @@ To set up your environment, create a env.json file inside the assets/ directory.
   "PLACE_KEY": "YOUR_API_KEY_HERE",
 }
 
-## App Demo
 
-<video controls>
-  <source src="media/preview.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-
-![App Screenshot](media/image1.png)
-![App Screenshot](media/image2.png)
-![App Screenshot](media/image3.png)
