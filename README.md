@@ -79,5 +79,13 @@ To set up your environment, create a env.json file inside the assets/ directory.
   "PLACE_KEY": "YOUR_API_KEY_HERE",
 }
 
+## App Demo
 
-[!Watch Video Demo](https://drive.google.com/file/d/1LMLzc8fGYKtDwOWZkLwpK02wPVFb3Xvi/view?usp=drive_link)
+<video controls>
+  <source src="media/preview.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+![App Screenshot](media/image1.png)
+![App Screenshot](media/image2.png)
+![App Screenshot](media/image3.png)
