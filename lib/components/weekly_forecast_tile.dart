@@ -25,7 +25,7 @@ class WeeklyForecastTile extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
-        color: Colors.blue.shade200,
+        color: Theme.of(context).cardColor,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -36,12 +36,12 @@ class WeeklyForecastTile extends StatelessWidget {
               Text(
                 DateFormat('EEEE').format(DateTime.parse(model.date!)),
                 // ?? 'Sunday',
-                style: const TextStyle(color: Colors.white, fontSize: 20),
+                style: const TextStyle(fontSize: 20),
               ),
               SizedBox(height: 5.h),
               Text(
                 DateFormat('dd MMMM yyyy').format(DateTime.parse(model.date!)),
-                style: const TextStyle(color: Colors.white),
+                style: const TextStyle(fontSize: 14),
               ),
               Row(
                 mainAxisSize: MainAxisSize.min,
@@ -52,16 +52,14 @@ class WeeklyForecastTile extends StatelessWidget {
                     size: 18.h,
                   ),
                   Text('${model.minTemp}°C  ',
-                      style:
-                          const TextStyle(color: Colors.white, fontSize: 14)),
+                      style: const TextStyle(fontSize: 14)),
                   Icon(
                     Icons.arrow_upward_rounded,
                     color: Colors.red,
                     size: 18.h,
                   ),
                   Text('${model.maxTemp}°C',
-                      style:
-                          const TextStyle(color: Colors.white, fontSize: 14)),
+                      style: const TextStyle(fontSize: 14)),
                 ],
               ),
             ],
@@ -73,7 +71,6 @@ class WeeklyForecastTile extends StatelessWidget {
               Text(
                 model.temp.toString(),
                 style: const TextStyle(
-                  color: Colors.white,
                   fontSize: 40,
                   fontWeight: FontWeight.w400,
                 ),
@@ -81,7 +78,6 @@ class WeeklyForecastTile extends StatelessWidget {
               const Text(
                 '°C',
                 style: TextStyle(
-                  color: Colors.white,
                   fontSize: 18,
                   fontWeight: FontWeight.w300,
                 ),
