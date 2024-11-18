@@ -79,10 +79,5 @@ To set up your environment, create a env.json file inside the assets/ directory.
   "PLACE_KEY": "YOUR_API_KEY_HERE",
 }
 
-## [Watch Video Demo]
 
-###Video link:
 [Watch Video Demo](https://drive.google.com/file/d/1LMLzc8fGYKtDwOWZkLwpK02wPVFb3Xvi/view?usp=drive_link)
-
-https://drive.google.com/file/d/1LMLzc8fGYKtDwOWZkLwpK02wPVFb3Xvi/view?usp=drive_link
-
