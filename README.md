@@ -134,12 +134,6 @@ Feel free to use, fork, or improve!
 
 ---
 
-## Author
-
-**Your Name**  
-[GitHub](https://github.com/yourusername) • [LinkedIn](https://linkedin.com/in/yourprofile)
-
----
 
 > Built with ❤️ using Flutter 3.10.5
 ```
