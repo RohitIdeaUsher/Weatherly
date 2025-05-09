@@ -2,14 +2,14 @@ import 'dart:developer';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:weatherly/dependencies.dart';
+import 'package:weatherly/services/dependencies.dart';
 import 'package:weatherly/features/dashboard/data/dashboard_repository.dart';
 import 'package:weatherly/features/dashboard/domain/forecast_model.dart';
 import 'package:weatherly/features/dashboard/domain/prediction.dart';
 import 'package:weatherly/features/dashboard/domain/weather_model.dart';
-import 'package:weatherly/services/client.dart';
-import 'package:weatherly/services/endpoints.dart';
-import 'package:weatherly/services/environment.dart';
+import 'package:weatherly/services/dio/client.dart';
+import 'package:weatherly/services/dio/endpoints.dart';
+import 'package:weatherly/services/dio/environment.dart';
 import 'package:weatherly/core/uuid_token.dart';
 part 'dashboard_repository_impl.g.dart';
 

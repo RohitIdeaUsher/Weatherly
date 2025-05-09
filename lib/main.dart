@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
-import 'package:weatherly/dependencies.dart';
+import 'package:weatherly/services/dependencies.dart';
 import 'package:weatherly/features/saved_city/domain/saved_city_model.dart';
 import 'package:weatherly/features/splash/presentation/splash_screen.dart';
 import 'package:weatherly/core/theme_notifier.dart';

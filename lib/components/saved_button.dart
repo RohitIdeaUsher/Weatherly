@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:weatherly/core/db/hive_services/hive_service.dart';
+import 'package:weatherly/services/db/hive_services/hive_service.dart';
 import 'package:weatherly/features/dashboard/domain/weather_model.dart';
 import 'package:weatherly/features/saved_city/domain/saved_city_model.dart';
 

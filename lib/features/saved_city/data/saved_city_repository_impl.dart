@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:weatherly/core/db/hive_services/hive_service.dart';
+import 'package:weatherly/services/db/hive_services/hive_service.dart';
 import 'package:weatherly/features/saved_city/domain/saved_city_model.dart';
 
 import 'saved_city_repository.dart';
