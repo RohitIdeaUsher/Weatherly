@@ -133,9 +133,3 @@ MIT License.
 Feel free to use, fork, or improve!
 
 ---
-
-
-> Built with ❤️ using Flutter 3.10.5
-```
-
-This version of the `README.md` includes a **project structure** section to illustrate the file organization and gives a clean breakdown of the application. You can further enhance this by adding additional details such as deployment steps or advanced setup instructions if needed!
