@@ -14,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     init();
-    super.initState();
+    // super.initState();
   }
 
   void init() async {
@@ -40,9 +40,24 @@ class _SplashScreenState extends State<SplashScreen> {
       child: Scaffold(
         backgroundColor: const Color(0xff060720),
         body: Center(
-          child: Text(
-            'Weatherly',
-            style: TextStyle(color: Colors.white, fontSize: 50.sp),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/icons/app_icon.png',
+                width: 200.w,
+                height: 200.h,
+              ),
+              SizedBox(height: 20.h),
+              const Text(
+                'Weatherly',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
           ),
         ),
       ),

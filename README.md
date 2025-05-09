@@ -11,6 +11,10 @@
 ![App Screenshot](media/image1.png)
 ![App Screenshot](media/image2.png)
 ![App Screenshot](media/image3.png)
+![App Screenshot](media/image4.png)
+![App Screenshot](media/image5.png)
+![App Screenshot](media/image6.png)
+![App Screenshot](media/image7.png)
 
 
 Welcome to **Weatherly**, a weather forecasting mobile application built using **Flutter**. This app is designed with a clean architecture and a feature-first approach to provide an easy-to-maintain and scalable structure.
