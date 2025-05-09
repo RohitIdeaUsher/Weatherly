@@ -1,6 +1,3 @@
-Here's the updated `README.md` with the requested tree structure and details:
-
-```markdown
 # Weatherly - Flutter Weather Application
 
 ## App Demo
