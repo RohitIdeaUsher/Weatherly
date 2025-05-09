@@ -20,8 +20,7 @@ Welcome to **Weatherly**, a weather forecasting mobile application built using *
 4. [Getting Started](#getting-started)
 5. [Environment Setup](#environment-setup)
 6. [State Management](#state-management)
-7. [Contributing](#contributing)
-8. [License](#license)
+7. [License](#license)
 
 ## Project Overview
 
@@ -113,17 +112,6 @@ lib/
 ## State Management
 
 **Riverpod** is used for state management throughout the app. Riverpod provides a modern and scalable way to manage and share state between different parts of the application.
-
----
-
-## Contributing
-
-We welcome contributions to **Weatherly**! If you'd like to contribute, please follow the steps below:
-
-1. Fork the repository
-2. Create a new branch for your feature or bug fix
-3. Write tests for your changes
-4. Submit a pull request
 
 ---
 
